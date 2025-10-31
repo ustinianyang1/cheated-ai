@@ -1,0 +1,844 @@
+变量
+实例	类型	描述
+Convars	Convars	提供用于读取和更改控制台变量的接口，一般地，Convars（控制台变量）都被隐藏，控制台输入相关指令无法使用，属于隐藏指令。
+Director	CDirector	给导演系统提供一个有限的接口。
+DirectorScript	table	导演脚本的脚本域， 包括了 DirectorOptions表。
+Documentation	table	包含script_help指令打印的字符串。
+Entities	CEntities	提供对目前已生成实体的接口。
+g_ClearoutTable	table (null)
+g_MapScript	table	地图脚本的脚本域，它还包含了许多有用的函数。
+g_ModeScript	table	模式脚本的脚本域。只有在脚本模式下才可完全使用。
+g_RoundState	table
+g_rr	table
+NavMesh	CNavMesh	提供一个方法来解锁救援载具。
+NetProps	CNetPropManager	允许读取和更新实体的网络属性。
+print_indent
+_PublishedHelp	table
+ScriptDebugTraceAllOn	bool
+ScriptDebugTraces	table
+ScriptDebugText	array
+ScriptDebugTextFilters	table
+ScriptDebugTextIndent	bool
+ScriptDebugWatches	array
+ScriptEventCallbacks	table
+常量
+实例	类型	描述
+_charsize_	integer
+_floatsize_	integer
+_intsize_	integer
+_version_	string	Squirrel的版本号。
+_versionnumber_	integer	Squirrel的版本号的整数形式。
+RAND_MAX	integer
+SPAWN_FLAGS	table
+类
+AI_Response
+来自旧相应系统的不透明类的表示返回值。
+
+Methods
+函数	用法	描述
+GetMatchScore		这场比赛质量的分数之相关性。 (基于标准比赛的数字)
+CBaseAnimating
+Extends CBaseEntity
+
+动画实体（如props）的脚本句柄类。
+
+待完善: 	它似乎不比CBaseEntity的功能多。
+
+
+CBaseEntity
+这是实体的脚本句柄类。所有已生成实体都有一个使用CBaseEntity或者它的子类的脚本句柄。
+
+所有游戏中的脚本句柄都有通过Entities来访问，实体脚本可以通过self来访问它本身的脚本句柄。
+
+Methods
+函数	用法	描述
+__KeyValueFromInt	void __KeyValueFromInt(string key, int value)	以整数设置实体的键值（KeyValue）. 这个函数只修改数值而不执行实体处理KeyValue所需要的任何代码, 所以可能会有令人意想不到的副作用。
+__KeyValueFromFloat	void __KeyValueFromFloat(string key, float value)	以浮点数设置实体的KeyValue. 这个函数只修改数值而不执行实体处理KeyValue所需要的任何代码, 所以可能会有令人意想不到的副作用。
+__KeyValueFromString	void __KeyValueFromString(string key, string value)	以字符串设置实体的KeyValue. 这个函数只修改数值而不执行实体处理KeyValue所需要的任何代码, 所以可能会有令人意想不到的副作用。
+__KeyValueFromVector	void __KeyValueFromVector(string key, Vector value)	以向量（Vector）设置实体的KeyValue. 这个函数只修改数值而不执行实体处理KeyValue所需要的任何代码, 所以可能会有令人意想不到的副作用。
+ApplyAbsVelocityImpulse	void ApplyAbsVelocityImpulse(Vector impulse)	对物理对象产生一次速度脉冲。/提供速度
+ApplyLocalAngularVelocityImpulse	void ApplyLocalAngularVelocityImpulse(Vector impulse)	对物理对象产生一次角度脉冲。/提供角度（转弯）
+ConnectOutput	void ConnectOutput(string output, string function)	添加一个I/O关联, 当指定的输出触发时将调用指定的函数。
+DisconnectOutput	void DisconnectOutput(string output, string function)	从I/O事件中删除一个已关联的脚本函数。
+FirstMoveChild	handle FirstMoveChild()
+GetAngles	handle QAngle GetAngles()	以向量形式获取实体的欧拉角(pitch, yaw, roll)。
+GetBaseVelocity	Vector GetBaseVelocity()	获取基础速度 [待完善]
+GetClassname	string GetClassname()	返回实体的种类名，包含player和infected。
+GetContext	variable GetContext(string name)	GetContext( name ):检查一个对象的状态然后返回对象是否可用.可能返回string,float,或nil(如果对象没有找到)。
+GetEntityHandle	unknown GetEntityHandle()	获取一个实体的 C++ EHANDLE(en)参照。这是一个无法被Squirrel直接使用的不透明数据类型，不是一个普通的脚本句柄。
+GetEntityIndex	int GetEntityIndex()	返回实体的索引，这是和用于游戏尸潮时间的索引类型相同。
+GetForwardVector	Vector GetForwardVector()	返回实体的前进向量。
+GetHealth	int GetHealth()	返回实体当前的生命值（并不包括生还者临时血量/虚血）。
+GetLocalAngularVelocity	QAngle GetLocalAngularVelocity()	获取角速度向量。
+GetLocalVelocity	Vector GetLocalVelocity()	获取实体的速度向量。
+GetMoveParent	handle GetMoveParent()	如果实体位于层次结构(hierarchy)中, 检索实体的父级(parent)。
+GetName	string GetName()	返回实体的targetname。
+GetOrigin	Vector GetOrigin()	返回实体在地图内的位置。
+GetOwnerEntity	handle GetOwnerEntity()	获取实体的所有者(owner)。(备注：似乎只有当需要在这个实体上使用SetOwner()时这个函数才有用, 可能也不尽然)
+GetPreTemplateName	string GetPreTemplateName()	Get the entity name stripped of template unique decoration.
+GetRootMoveParent	handle GetRootMoveParent()	如果实体位于层次结构中，顺着层次结构检索实体的根父级。
+GetScriptId	string GetScriptId()	检索用于引用脚本系统中的实体的唯一标识符。
+GetScriptScope	handle GetScriptScope()	检索存储与此实体关联的实体脚本数据的表。
+GetVelocity	Vector GetVelocity()	返回实体的速度向量。
+IsPlayer	bool IsPlayer()	这个实体是否为玩家类。
+IsValid	bool IsValid()	返回句柄是否属于有效的实体。
+Kill	void Kill()	移除实体。
+NextMovePeer	handle NextMovePeer()
+OverrideFriction	void OverrideFriction(float duration, float friction)	暂时重设阻力的持续时间。
+PrecacheModel	void PrecacheModel(string filename)	预缓存一个模型，填写模型路径，如果你的脚本采用了一个模型，请务必预缓存。
+PrecacheScriptSound	void PrecacheScriptSound(string)	预缓存声音文件
+待完善: 	这个是原文件还是soundscripts?
+SetAngles	void SetAngles(QAngle direction)	设置实体的方位。
+SetContext	void SetContext(string name, string value, float duration)	SetContext( 名字 , 值, 持续时间 ):存储任何在实体对话内容里的配对值.值是一个字符串.持续一段时间。(0代表永久)
+SetContextNum	void SetContextNum(string name, float value, float duration)	SetContext( 名字 , 值, 持续时间 ):存储任何在实体对话内容里的配对值.值是一个数字(int或者float).持续一段时间。(0代表永久)
+SetForwardVector	void SetForwardVector(Vector direction)	设置实体方向具有前进矢量。
+SetFriction	void SetFriction(float friction)	设置玩家摩擦力（似乎无效）。
+SetGravity	void SetGravity(float gravity)	设置重力。
+SetHealth	void SetHealth(int health)	改变实体的生命值。不会检查是否会杀死玩家。
+SetOrigin	void SetOrigin(Vector position)	设置实体在世界的坐标量。
+SetVelocity	void SetVelocity(Vector velocity)	设置实体向量速度。
+TakeDamage	void TakeDamage(float damage, int damageType, CBaseEntity attacker)	对实体造成伤害。可以指定伤害类型与产生此伤害的实体。
+ValidateScriptScope	bool ValidateScriptScope()	返回实体的脚本域是否已被创建。
+钩子/Hooks
+如果其中一个函数在实体脚本中被声明, 实体将在适当的情况下自动运行此函数。
+
+函数	签名	描述
+InputInputName	bool InputInputName()	当实体从I/O系统中接收到输入时调用. 此函数的名称必须是实体input列表中的Input, 例如表示FireUser1的InputFireUser1. 当这个函数被调用时, 激活和调用的实体的脚本句柄会被写入接收输入的实体的脚本数据的activator和caller变量中. 这个函数必须返回一个布尔值. 将布尔值设定为true允许实体来处理输入, 否则用false阻止之。
+OnEntText	string OnEntText()	如果ent_text用于一个实体并且这个函数存在的话，每tick它都将被激活。返回一个会显示在ent_text叠加层的字符串。对你用ent_text使用的对象来说，这是一个非常方便的功能来获取显示对象的脚本数据，或者在使用ent_text中随意运行一些代码（例如打开其他调试可视化）。提示：必须设置ent_text_allow_script 1 才能使这个功能激活。
+提示:
+ent_text是一个控制台指令，更多内容请详见Ent_text(en)主词条。
+OnPostSpawn	void OnPostSpawn()	在实体生成时立即被调用. 这个函数可以用于让实体向主脚本注册自身，或以编程方式调整实体参数。
+Precache	void Precache()	在脚本执行后调用. 可用于在地图加载时调用模型和声音的预缓存函数。
+CTerrorPlayer （玩家相关函数）
+CBaseEntity的延生扩展。
+
+玩家实体的脚本句柄类。所有生还者和特殊感染者都属于这里。
+
+Methods
+函数	用法	描述
+Extinguish	void Extinguish()	熄灭一个正在燃烧的玩家。
+EyeAngles	QAngle EyeAngles()	返回玩家视角的角度。
+EyePosition	Vector EyePosition()	返回玩家视角的位置。
+GetActiveWeapon	handle GetActiveWeapon()	获取玩家当前武器的实体。
+GetButtonMask	int GetButtonMask()	获取玩家当前按下的按键，可监听的按键十分有限。（仅限监听操作按键，比如前进后退，静步，跳跃等）。
+GetHealthBuffer	int GetHealthBuffer()	返回当前生还者的临时血量（虚血）。
+待完善: 	特感的临时血量（Temp Health）是否有效？
+GetNetworkIDString	string GetNetworkIDString()	获取玩家的steam数字ID。
+GetPlayerName	string GetPlayerName()	获取玩家昵称。
+GetPlayerUserId	int GetPlayerUserId()	获取玩家userID。
+GetSenseFlags	int GetSenseFlags()	获取当前BOT（小僵尸也可用）的感知标志：BOT_CANT_SEE, BOT_CANT_HEAR, BOT_CANT_FEEL，中文应该是BOT不能看见，BOT不能听到，BOT不能感受到。嗯？不明所以？请实测，估计有一些变化。
+GetSurvivorSlot	int GetSurvivorSlot()	获取玩家的槽编号（也许就是血量显示的编号顺序）。
+GetZombieType	int GetZombieType()	如果是感染者，找出其类型。可知的僵尸类型（ZombieType）分别是：Smoker = 1，Boomer = 2，Hunter = 3，Spitter = 4，Jockey = 5，Charger = 6，Witch = 7，Tank = 8，Survivor （生还者） = 9。
+GiveAmmo	void GiveAmmo(int amount)	为玩家主要武器弹药池添加弹药。
+GiveItem	void GiveItem(string itemname)	以物品/武器的名城给予玩家这件物品/武器。效果等同于控制台输入give health（生命值），katana（武士刀），rifle_ak47（AK47突击步枪）等。
+GiveUpgrade	void GiveUpgrade(string upgrade)	给予主武器一种升级：UPGRADE_INCENDIARY_AMMO, UPGRADE_EXPLOSIVE_AMMO, UPGRADE_LASER_SIGHT，中文对应的升级分别是燃烧弹，高爆弹，激光瞄准器。此方法存在报错问题（有时）。
+HitWithVomit	void HitWithVomit()	将胆汁溅射到一名玩家上。
+IsDead	bool IsDead()	返回一个表示是否处于死亡状态的布尔值。
+IsDying	bool IsDying()	返回一个表示是否处于濒死状态（应该是黑白状态）的布尔值。
+IsIncapacitated	bool IsIncapacitated()	返回一个表示是否处于无能为力状态（应该是处于被控或者倒地，我没去研究，目前仅翻译）的布尔值。
+IsHangingFromLedge	bool IsHangingFromLedge()	返回一个表示是否处于挂边状态的布尔值。
+IsGhost	bool IsGhost()	返回一个表示感染者是否处于幽灵状态的布尔值。
+IsOnFire	bool IsOnFire()	返回一个表示某位玩家是否处于燃烧状态的布尔值。
+IsSurvivor	bool IsSurvivor()	是否是生还者团队（否则即感染者团队）。
+RemoveUpgrade	void RemoveUpgrade(string upgrade)	移除一种主武器的升级：UPGRADE_INCENDIARY_AMMO, UPGRADE_EXPLOSIVE_AMMO, UPGRADE_LASER_SIGHT，中文对应的升级分别是燃烧弹，高爆弹，激光瞄准器。
+ReviveByDefib	void ReviveByDefib()	通过电击器来复活死去的玩家。
+ReviveFromIncap	void ReviveFromIncap()	救起一个被控/倒地的玩家。
+SetFriction	void SetFriction(int friction)	设置玩家的阻力。
+SetGravity	void SetGravity(int gravity)	设置玩家的重力。
+SetHealthBuffer	void SetHealthBuffer(float health)	给生还者设置临时血量（虚血），当设置为0的时候并不会使玩家倒地/被控或者杀死。
+SetReviveCount	void SetReviveCount(int count)	设置生还者的复活次数，并且更新第三打击（？）状态和效果。
+SetSenseFlags	void SetSenseFlags(int flags)	设置当前Bot（小僵尸也可用）的感知标志：BOT_CANT_SEE, BOT_CANT_HEAR, BOT_CANT_FEEL，中文应该是BOT不能看见，BOT不能听到，BOT不能感受到。嗯？不明所以？请实测，估计有一些变化。
+Stagger	void Stagger(Vector position)	类似于近距离被煤气罐爆炸造成的效果，但不造成伤害。
+TryGetPathableLocationWithin	Vector TryGetPathableLocationWithin(int radius)	获取Nav（导航网络）中玩家可以通过的半径位置。
+UseAdrenaline	void UseAdrenaline(int duration)	使玩家获得肾上腺素的速度与视觉效果，但并不会增加生命值（即只有肾上腺素的增益效果，不增加虚血）。
+
+
+CCallChainer
+[待完善]
+
+Methods
+函数	用法	说明
+constructor	[待完善] constructor()
+PostScriptExecute	[待完善] PostScriptExecute()
+Call	[待完善] Call()
+Members
+实例	类型	描述
+chains	null
+prefix	null
+scope	null
+
+
+CDirector （导演相关函数）
+游戏实例：Director（导演）
+
+Provides methods for reading information and forcing events in the AI Director. To influence the Director behavior, the DirectorOptions table is used instead.提供AI导演系统的读取信息和刷新事件的方法。若需要干预导游的行为，请参考丶改用DirectorOptions（导演选项）表。
+
+Methods
+函数	用法	描述
+ClearCachedBotQueries	void ClearCachedBotQueries()	将所有缓存的Bot询问结果标记为无效。
+ForceNextStage	void ForceNextStage()	推动ScriptedMode进入下一阶段 —— 即请求GNSS激活。查了一下大概意思就是立刻进入游戏的下一个阶段，比如刚出门不刷特感，利用这个函数直接进入特感刷新阶段；比如打完尸潮有个空闲（Relax）时间，丧尸都很少，直接进入下一个阶段，刷尸潮或者刷更多僵尸等。详细可以见StageTypeAppendix(en)。
+GetAveragedSurvivorSpan	float GetAveragedSurvivorSpan()	获取领头生还者与落后生还者之间的距离（路程/跨度），随着时间而平滑。
+GetAveragedSurvivorSpeed	float GetAveragedSurvivorSpeed()	获取领头的生还者沿途移动的速率，随着时间而平滑。原文：Get the rate at which the lead survivor is moving along the flow, smoothed over time.
+提示:
+Flow——求生之路导航网格的一种参数，可以用于计算生还者所走的路程，以便安排时间补给或者用于计算对抗模式路程和分数。
+GetCommonInfectedCount	int GetCommonInfectedCount()	返回当前已生成的感染者数量。
+GetFurthestSurvivorFlow	float GetFurthestSurvivorFlow()	获取生还者走过的最远路程。返回的值应该是Flow，求生之路的一个隐藏值，当然仅猜测。
+GetGameMode	string GetGameMode()	获取当前的游戏模式。如果是在突变模式内获取，则返回当前突变模式而不是基础游戏模式。
+GetHoldoutCooldownEndTime	[待完善] float? GetHoldoutCooldownEndTime()	获取冷却倒计时结束的时间。好像是针对holdout这个突变模式，也可能是针对游戏内的尸潮之类的冷却，个人倾向于前者。
+GetPendingMobCount	int GetPendingMobCount()	返回正在等待重生的感染者数量。
+HasAnySurvivorLeftSafeArea	bool HasAnySurvivorLeftSafeArea()	返回布尔值，当一名或多名生还者离开起始点安全区域时为真。
+提示:
+安全区域是求生之路Nav（导航网络）中的一种属性，一般是第一关出生点标记为PLAYER_START和后续出门的安全屋标记为CHECKPOINT。
+IsAnySurvivorInCombat	bool IsAnySurvivorInCombat()	返回布尔值，当任意一名生还者最近处于战斗或者受到伤害时为真。
+IsPlayingOnConsole	bool IsPlayingOnConsole()	返回布尔值，如果游戏运行于控制台上时为真（例如Xbox 360）。
+IsSinglePlayerGame	bool IsSinglePlayerGame()	返回布尔值，如果当前游戏是单人游戏时为真。
+IsValid	bool IsValid()	返回布尔值，句柄是否属于一个有效实体。
+IsTankInPlay	bool IsTankInPlay()	返回布尔值，如果任意一只Tank对生还者处于仇恨状态时为真。个人猜测仇恨状态指发现生还者准备攻击，而在前方刷克，但是生还者仅听到声音，双方皆未碰面时不是仇恨状态。
+L4D1SurvivorGiveItem	void L4D1SurvivorGiveItem()	让一代的生还者们知道现在是给予玩家一件物品的好时机。消逝（The Passing）一二代相遇，一代会给予二代玩家一些物品，比如药丸。
+PlayMegaMobWarningSounds	void PlayMegaMobWarningSounds()	播放尸潮来临的尖叫警示声，迫使玩家说出"Incoming horde"的语音。
+ResetMobTimer	void ResetMobTimer()	在BUILD_UP阶段尽可能快惊动一个感染者。
+提示:
+BUILD_UP阶段即尸潮节奏的最前期，尸潮来临节奏为：BUILD_UP -> 产生尸潮 -> SUSTAIN_PEAK -> RELAX -> 再次 BUILD_UP。
+提示:
+在BUILD_UP阶段，我们可以注意到僵尸一般都是处于未警觉状态，很散漫，惊动感染者非尸潮，而是让感染者注意到玩家。
+ResetSpecialTimers	void ResetSpecialTimers()	重置所有特感的计时器（以类型或生命槽），以便希望怪物尽快生成。
+SetHoldoutCooldownEndTime	void SetHoldoutCooldownEndTime(float time? [待完善])	获取冷却倒计时结束的时间。
+UserDefinedEvent1	void UserDefinedEvent1()	These trigger the appropriate output from the info_director entity when called.
+ 当来自info_director实体的合适的触发被激活时触发。不太明白。
+UserDefinedEvent2	void UserDefinedEvent2()
+UserDefinedEvent3	void UserDefinedEvent3()
+UserDefinedEvent4	void UserDefinedEvent4()
+
+
+CEntities
+游戏实例：Entities
+
+一个用于查找和遍历所有游戏中的实体的脚本句柄的接口。要遍历一组实体, 请将null传递给适当方法中的前置参数以开始遍历, 或引用先前找到的实体以继续搜索。
+
+Methods
+函数	用法	描述
+FindByClassname	handle FindByClassname(handle previous, string class)	通过class name来寻找实体.。
+FindByClassnameNearest	handle FindByClassnameNearest(string class, Vector origin, float radius)	通过class name，查找最接近指定点的实体。
+FindByClassnameWithin	handle FindByClassnameWithin(handle previous, string class, Vector origin, float radius)	以一个半径范围查找指定class name的实体。
+FindByModel	handle FindByModel(handle previous, string filename)	以模型名称来查找实体。
+FindByName	handle FindByName(handle previous, string name)	以target name来查找实体。
+FindByNameNearest	handle FindByNameNearest(string name, Vector origin, float radius)	以target name来查找最接近指定点的实体。
+FindByNameWithin	handle FindByNameWithin(handle previous, string name, Vector origin, float radius)	以target name来查找指定半径范围的实体。
+FindByTarget	handle FindByTarget(handle previous, string targetname)	通过该实体自身target来查找实体。
+FindInSphere	handle FindInSphere(handle previous, Vector origin, float radius)	在一个指定半径范围内查找实体。
+First	handle First()	开始遍历实体列表。
+Next	handle Next(handle previous)	继续遍历实体列表, 为先前找到的实体提供参照。
+IsValid	bool IsValid()	判断句柄是否属于一个有效实体。
+
+
+CEnvEntityMaker
+CBaseEntity的延伸扩展。
+
+env_entity_maker实体的脚本句柄类。
+
+Methods
+函数	用法	描述
+SpawnEntity	void SpawnEntity()	在制造器（Maker）的位置上创建一个实体。
+SpawnEntityAtEntityOrigin	void SpawnEntityAtEntityOrigin(CBaseEntity entity)	在指定实体的实例上创建一个实体。
+SpawnEntityAtLocation	void SpawnEntityAtLocation(Vector origin, QAngle orientation)	在指定的位置和方向上创建一个实体，方向为以度为单位的欧拉角(pitch, yaw, roll)。
+SpawnEntityAtNamedEntityOrigin	void SpawnEntityAtNamedEntityOrigin(string name)	在指定target name的实体的实例上创建一个实体。
+
+
+CInfoItemPosition
+CBaseEntity的延伸扩展。
+
+info_item_position实体的脚本句柄类。
+
+Methods
+函数	用法	描述
+GetGroup		获取这个物品位置（item_position）的group number（组数）值。
+GetRarity		获取这个物品位置（item_position）的rarity（稀有）值。
+GetReplaceParm		以索引的方式获取replacement parameter（替换参数值）。
+SetGroup		设置这个物品位置（item_position）的group number（组数）值。
+SetRarity		设置这个物品位置（item_position）的rarity（稀有）值。
+
+
+CNavMesh
+游戏实例：NavMesh（导航网络）。
+
+Methods
+函数	用法	描述
+IsValid	bool IsValid()	句柄是否属于一个有效实体。
+待完善: 	这个导航网络是否有实体？
+UnblockRescueVehicleNav	void UnblockRescueVehicleNav()	解锁救援载具的导航网络区域，以便于Bots（电脑玩家）进入载具/通过区域/登上载具。
+
+
+CNetPropManager
+游戏实例：NetProps
+
+Allows reading and updating the network properties of an entity.
+
+If the entity has multiple netprops with the same name, the data table name can be prepended with a dot to specify which one to use (e.g. "m_itTimer.m_timestamp").
+
+允许读取和更新网络属性中的一个实体。
+
+如果实体有多个同样名字的netprops，数据表名字可以通过某个点来指定。（如"m_itTimer,m_timestamp"）
+
+警告:
+Each netprop has a set size in bits, exceeding the size may desync the clients from the server causing unpredictable behavior.
+Methods
+函数	用法	描述
+GetPropArraySize	int GetPropArraySize(CBaseEntity entity, string propertyName)	返回一个实体的某netprop数组的大小。
+GetPropEntity	CBaseEntity GetPropEntity(CBaseEntity entity, string propertyName)	返回实体句柄。
+GetPropEntityArray	CBaseEntity GetPropEntityArray(CBaseEntity entity, string propertyName, int arrayElement)	返回实体netprop的数组。
+GetPropFloat	float GetPropFloat(CBaseEntity entity, string propertyName)	返回一个实体浮点型netprop的值。
+GetPropFloatArray	float GetPropFloatArray(CBaseEntity entity, string propertyName, int arrayElement)	返回一个实体浮点型netprop数组的值。
+GetPropInt	int GetPropInt(CBaseEntity entity, string propertyName)	返回一个实体整数型netprop的值。
+GetPropIntArray	int GetPropIntArray(CBaseEntity entity, string propertyName, int arrayElement)	Reads an integer valued netprop from an array.从一个数列读取一个整数型的netprop。
+GetPropString	string GetPropString(CBaseEntity entity, string propertyName)	Reads an string valued netprop.读取一个字符串型值的netprop。
+GetPropStringArray	string GetPropStringArray(CBaseEntity entity, string propertyName, int arrayElement)	Reads an string valued netprop from an array.从一个数列读取一个字符串型值的netprop。
+GetPropType	string GetPropType(CBaseEntity entity, string propertyName)	Returns the name of the netprop type as a string.以字符串的形式返回一个netprop的类型名。
+GetPropVector	Vector GetPropVector(CBaseEntity entity, string propertyName)	Reads a 3D vector valued netprop.
+待完善: 	Does it work for other dimensions too?
+读取一个3D向量值的netprop。
+待完善: 	它能运行于其他规模上吗？
+GetPropVectorArray	Vector GetPropVectorArray(CBaseEntity entity, string propertyName, int arrayElement)	Reads a 3D vector valued netprop from an array. 从一个数列读取一个3D向量值的netprop。
+HasProp	bool HasProp(CBaseEntity entity, string propertyName)	Checks if a netprop exists.检测一个netprop是否存在。
+SetPropEntity	void SetPropEntity(CBaseEntity entity, string propertyName, CBaseEntity value)	Sets an EHANDLE valued netprop (21 bit integer) to reference the specified entity.设置一个C++ EHANDLE值的netprop（21比特整数）来引用指定实体。
+SetPropEntityArray	void SetPropEntityArray(CBaseEntity entity, string propertyName, CBaseEntity value, int arrayElement)	Sets an EHANDLE valued netprop (21 bit integer) from an array to reference the specified entity.从一个数据设置一个C++ EHANDLE值的netprop（21比特整数）来引用指定实体。
+SetPropFloat	void SetPropFloat(CBaseEntity entity, string propertyName, float value)	Sets a netprop to the specified float.设置一个netprop为指定浮点数值。
+SetPropFloatArray	void SetPropFloatArray(CBaseEntity entity, string propertyName, float value, int arrayElement)	Sets a netprop from an array to the specified float.从一个数组设置一个netprop为指定浮点数值。
+SetPropInt	void SetPropInt(CBaseEntity entity, string propertyName, int value)	Sets a netprop to the specified integer.设置一个netprop为指定整数值。
+SetPropIntArray	void SetPropInt(CBaseEntity entity, string propertyName, int value, int arrayElement)	Sets a netprop from an array to the specified integer.从一个数组设置一个netprop为指定整数值。
+SetPropString	void SetPropString(CBaseEntity entity, string propertyName, string value)	Sets a netprop to the specified string.设置一个netprop为指定字符串值。
+SetPropStringArray	void SetPropStringArray(CBaseEntity entity, string propertyName, string value, int arrayElement)	Sets a netprop from an array to the specified string.从一个数组设置一个netprop为指定字符串值。
+SetPropVector	void SetPropVector(CBaseEntity entity, string propertyName, Vector value)	Sets a netprop to the specified vector.设置一个netprop为指定向量。
+SetPropVectorArray	void SetPropVectorArray(CBaseEntity entity, string propertyName, Vector value, int arrayElement)	Sets a netprop from an array to the specified vector.从一个数组设置一个netprop为指定向量。
+Convars （控制台变量）
+游戏实例：Convars/控制台变量。控制台变量属于隐藏指令。
+
+提供一个获取和设置控制台变量(en)在服务器上的接口。
+
+Methods
+函数	用法	描述
+GetClientConvarValue	string GetClientConvarValue(string name, int entindex)	Returns the convar value for the entindex as a string. Only works with client convars with the FCVAR_USERINFO flag.以字符串形式为实体索引返回一个控制台变量，只适用于客户端的FCVAR_USERINFO标签的控制台变量。
+GetStr	string GetStr(string name)	Returns the convar as a string. May return null if no such convar. 以字符串形式返回一个控制台变量，如果没有这样的控制台变量可能返回NULL（空值）。
+GetFloat	float GetFloat(string name)	Returns the convar as a float. May return null if no such convar.以浮点型形式返回一个控制台变量，如果没有这样的控制台变量可能返回NULL（空值）。
+SetValue	void SetValue(string name, value)	Sets the value of the convar. Supported types are bool, int, float, string. 设置一个控制台变量的值。支持类型有布尔型，整数型，浮点型和字符串。
+CPointTemplate
+CBaseEntity的延伸扩展。
+
+point_template实体的脚本句柄类。
+
+钩子/Hooks
+table PreSpawnInstance(string entityClass, string entityName)
+如果定义了此Hook，它将在实体创建之前被调用，并且返回的任何KeyValues都将被分配给该实体。
+This could be used to dynamically assign target names, colors, even models. Unfortunately, models don't work like one would think. Yes, it is possible to change that gas tank into a football model, will even keep the weapon_gascan class, but it won't behave like one.这可以用于动态分配target name，颜色，甚至模型。但是不幸的是，模型并没有想我们所认为的那样运行的很完美。是的，它可能会出问题，比如从汽油桶变成一个足球模型。它将是weapon_gascan（汽油桶的实体），但是它并没有表现的像一个汽油桶。
+function PreSpawnInstance( entityClass, entityName )
+{
+	return
+	{
+   		rendercolor = "0 255 0"
+   		targetname = "mySpawnedEntity"
+	};
+}
+void PostSpawn(table entities)
+在实体生成后调用. 具有按名称索引的已生成的实体句柄的表被传递给该函数. 可以使用它来关联输出或在创建实体后做任何你想做的事情。
+function PostSpawn( entities )
+{
+	foreach( name, handle in entities )
+	{
+		printl( name + ": " + handle );
+	}
+}
+
+
+CPointScriptTemplate
+CBaseEntity的延伸扩展。
+
+point_script_template(en)实体的脚本句柄类。
+
+Methods
+函数	用法	描述
+AddTemplate	void AddTemplate(string, handle)	增加一个实体到模板生成器内。
+SetGroupSpawnTables	void SetGroupSpawnTables(handle, handle)	Cache the group spawn tables.缓存group spawn tables。
+
+
+CSimpleCallChainer
+似乎和CCallChainer有同样的成员。 [待完善]
+
+
+
+CPointScriptUseTarget
+CBaseEntity的延伸扩展
+
+point_script_use_target(en)实体的脚本句柄类。
+
+Methods
+函数	用法	描述
+CanShowBuildPanel	void CanShowBuildPanel(bool showPanel)	Sets if the UI panel for the button is shown.设置按钮的UI面板是否显示。
+GetUseModelName	string GetUseModelName()	Get the entity name of the prop bound to this button.获取绑定到此按钮的prop的实体名。
+SetProgressBarText	void SetProgressBarText(string text)	Sets the use text for the button UI.设置按钮UI的使用文本内容。
+SetProgressBarSubText	void SetProgressBarText(string text)	Sets the subtext below the progress bar for the button UI.设置按钮UI进度条下方的子文本内容。
+SetProgressBarFinishTime	void SetProgressBarFinishTime(float time)	Sets the total time the button takes to use. If '0', no progress bar will be displayed.设置按钮总共需要按下多长时间。如果是'0'，不会显示任何进度条。
+SetProgressBarCurrentProgress	void SetProgressBarCurrentProgress(float time)	Sets the current use progress. It can be used to save the use progress when the user releases the use key.设置当前按钮进度条的使用进度时间，当用户释放按钮时它可以用于保存进度。
+StopUse	void StopUse()	Stop the current use action.停止当前用户行动。
+
+
+Members
+这些变量仅在实体生成之后才能在实体脚本中使用。它们包含与普通脚本句柄不一样的实体句柄，并且可以与CBaseEntity::GetEntityHandle()的方法进行比较。
+
+实例	类型	描述
+UseModelEntity	entity handle	使用模型关联实体。
+PlayerUsingMe	entity handle	当前使用中的玩家。如果非使用中则设置为0。
+钩子/Hooks
+These VScript methods are called on the script set in the Entity Scripts keyvalue for the point_script_use_target(en). 这些VScript的方法激活于实体point_script_use_target(en)的Entity Scripts键值。
+
+函数	用法	描述
+OnUseFinished	void OnUseFinished()	Called when the player has used this button for at least 'FinishTime' seconds.当玩家至少使用用这个按钮'FinishTime'秒时激活。
+OnUseStart	bool OnUseStart()	当玩家开始使用这个按钮时激活。返回false值来禁用第三人称使用动画。
+OnUseStop	void OnUseStop(float timeUsed)	Called when the player stops using this button. Passes the time this button has been used (time between StartUse and now).当玩家停止使用这个按钮时激活。传回此按钮的已使用时间（从开始使用到现在的区间）。
+Precache	void Precache()	在脚本运行之后立刻调用，当实体第一次生成时可由游戏引擎激活。
+
+
+Decider
+An isolated instance of a rulescript database.
+
+Methods
+函数	用法	描述
+constructor
+AddRule	bool AddRule(handle CRule)	Add a CRule object (defined in rulescript_base.nut).添加一个CRule对象（在rulescript_base.nut中定义）。
+FindAllMatches	handle FindAllMatches(handle query, float leeway)	Returns an array of all matching responses. If leeway is nonzero, all results scoring within 'leeway' of the best score return.
+FindBestMatch	handle FindBestMatch(handle query)	Query the database and return the best result found. If multiple of equal score found, an arbitrary one returns.
+IsValid	bool IsValid()	Whether the object belongs to a valid entity(?).对象是否属于一个有效实体（？）。
+
+
+regexp
+The built-in Squirrel class for regular expressions. 正则表达式的内置Squirrel类。
+
+Methods
+函数	用法	描述
+constructor	regexp()
+capture	[table] capture(str, [start])	返回在字符串str中的一个正则表达式的第一个匹配的包含2个索引（"begin"和"end"）的表的数组.为每个捕获的子表达式创建一个数组条目, 如果不匹配, 则返回null. 搜索从字符串的索引开始处开始, 如果忽略start, 则搜索从字符串的起始处开始。
+match	bool match(str)	如果正则表达式匹配字符串str， 则返回true， 否则返回false。
+search	table search(str, [start])	返回包含字符串"str"中正则表达式第一个匹配的两个索引（"begin"和"end"）的表, 如果不匹配, 则返回null. 搜索从字符串的索引开始处开始, 如果忽略start, 则搜索从字符串的起始处开始。
+subexpcount
+
+
+LateBinder
+Methods
+函数	用法	描述
+Begin
+End
+EstablishDelegation
+HookRootMetamethod
+UnhookRootMetamethod
+RemoveDelegation
+Resolve
+
+
+Members
+实例	类型	描述
+m_bindNamesStack	array
+m_fixupSet	array
+m_log	bool
+m_logIndent	int
+m_targetTable	table?(null)
+
+
+QAngle
+相当于C++ QAngle类。
+
+表三维方位。
+
+Methods
+函数	用法	描述
+constructor	QAngle(float pitch, float yaw, float roll)	创建一个新的QAngle类（pitch，yaw，roll）。
+Forward	Vector Forward()	返回这个角度的前进向量。
+Left	Vector Left()	返回这个角度的左向量。
+Pitch	float Pitch()	返回俯仰角（Pitch）的度数。
+Roll	float Roll()	返回翻滚角（Roll）的度数。
+ToKVString	string ToKVString()	Returns a string with the values separated by one space. This method is bugged and will append '))' to the end.返回一个字符串，其值用一个空格分隔。这个方法用于监听并且追加'))'于结束。
+Up	Vector Up()	返回上向量的度数。
+Yaw	float Yaw()	返回偏航角（Yaw）的度数。
+Members
+实例	类型	描述
+x	float	俯仰角的度数。
+y	float	偏航角的度数。
+z	float	翻滚角的度数。
+
+
+Quaternion （四元数）
+用于旋转的四元数[1]。
+
+Methods
+函数	用法	描述
+constructor	Quarternion([待完善])	创建一个新的四元数。
+Dot	float? Dot(Quarternion factor)	The scalar product of two quaternions(?).
+Invert	Quarternion? Invert()
+Norm	Quarternion? Norm()
+SetPitchYawRoll	void SetPitchYawRoll(?)
+ToKVString	string ToKVString()
+ToQAngle	QAngle ToQAngle()
+
+
+Vector
+相当于C++ Vector(en)类。
+
+三维矢量。
+
+三维向量用向量值和标量值重载了算术运算。
+
+注意:
+声明与操作向量的例子
+Methods
+函数	用法	描述
+constructor	Vector(float x, float y, float z)	用指定的笛卡尔坐标创建一个新的向量。
+Cross	float Cross(Vector factor)	两个向量的向量乘积. 返回与输入向量正交的向量。
+Dot	float Dot(Vector factor)	两个向量的标量积。
+Length	float Length()	向量的幅度。
+LengthSqr	float LengthSqr()	向量的幅度的平方. 比上一个方法更快。
+Length2D	float Length2D()	返回x-y平面上向量的幅度。
+Length2DSqr	float Length2DSqr()	返回x-y平面上向量幅度的平方. 比上一个方法更快。
+Norm	float Norm()	以浮点数返回向量的长度. 这个函数同时也会将向量规范化, X, Y和Z值将被设置为-1和1之间的数字. 然后你可以将这些值乘以例如3000, 以使用该向量来设置游戏中某物的速度。
+Scale	Vector Scale(float factor)	缩放向量的幅度。
+ToKVString	string ToKVString()	返回一个没有分隔符的字符串。
+tostring	string tostring()	返回一个人类可读*人性化*的字符串。
+Members
+实例	类型	描述
+x	float	笛卡尔x轴。
+y	float	笛卡尔y轴。
+z	float	笛卡尔z轴。
+
+
+Vector2D, Vector4D
+二维和四维的向量。
+
+Methods
+函数	用法	描述
+constructor	VectorXD(float x, float y,...)	用指定的笛卡尔坐标创建一个新的向量。
+Dot	float Dot(VectorXD factor)	两个向量的标量积。
+Length	float Length()	向量的幅度。
+LengthSqr	float LengthSqr()	向量的幅度的平方. 比上一个方法更快。
+Norm	float Norm()	似乎同样返回向量的幅度。
+ToKVString	string ToKVString()	返回一个没有分隔符的字符串。
+
+
+Scripted Mode
+Enabling Scripted Mode makes a lot of features available in the g_ModeScript scope. 可用于g_ModeScript脚本域中启用脚本模式来实现许多功能。
+
+sm_utilities.nut
+Available in the g_ModeScript scope, always loaded in. 可用于g_ModeScript脚本域，始终载入。
+
+sm_utilities contains many wrapper functions for manipulating different features. Only a few of them are listed here, see the EMS tutorial(en) for more examples.
+
+函数	用法	描述
+DeepPrintTable	void DeepPrintTable(handle table, string prefix = "")	将表（子表）打印到控制台。同样适用于类（非实例）。
+DuplicateTable	table DuplicateTable(table source)	This returns a deep copy of the passed in table.传入一个经过表的深层副本。
+InjectTable	void InjectTable(table override, table base)	注入一个覆盖数据到基表即添加新数据，覆盖dupes？
+
+
+钩子/Hooks
+These hook functions are only available in the g_ModeScript scope, in Scripted Mode, which is enabled for a game mode by adding a mode specific VScript (<mode_name>.nut). They are used by simply adding a function with the same name and arguments to the script, and are called back by the C++ code at the appropriate moments.
+
+AllowBash
+int AllowBash(handle basher, handle bashee): 当每次近战挥动（也许专门指的是推）时都会启用，返回以下值：
+
+ALLOW_BASH_ALL - 正常近战行为
+ALLOW_BASH_NONE - 什么也不做
+ALLOW_BASH_PUSHONLY - 启动具有物理效应的推动但不造成伤害（包括推动秒杀，即从背面推一个游荡地丶没有发现玩家丶无警觉的僵尸所造成的秒杀）。
+
+
+AllowTakeDamage
+bool AllowTakeDamage(table damageTable): Adding a function with this name in the script causes C++ to call it on all damage events. The damageTable is actually defined in scriptedmode.nut and filled in as appropriate before each call.
+
+ScriptedDamageInfo <-
+{
+	Attacker = null              // handle of the entity that attacked
+	Victim = null                // handle of the entity that was hit
+	DamageDone = 0               // how much damage done
+	DamageType = -1              // of what type
+	Location = Vector(0,0,0)     // where
+	Weapon = null                // by what - often Null (say if attacker was a common)
+}
+Returning "false" causes the damage will be stopped and nothing will be done to the target (though animation/bloodstains/decals will probably still happen, sorry about that). The only field read back by the C++ is DamageDone, so it can be used to change the damage value before it is applied. The Type field is a bitfield, of which several key #def's are exported to script (DMG_HEADSHOT, DMG_BULLET, DMG_BUCKSHOT, DMG_MELEE, DMG_STUMBLE, DMG_BLAST, DMG_BLAST_SURFACE, DMG_BURN ).
+
+
+
+BotQuery
+bool BotQuery(int queryflag, handle entity, bool defaultvalue): Hook to control survivor bot behavior. Only one known flag is supported.
+
+BOT_QUERY_NOTARGET - Fired when a bot wants to bash a prop. Returning false disallows the bashing.
+
+
+CanPickupObject
+bool CanPickupObject(handle object): Hook function for deciding whether a given prop should be pickupable (HL2 style). Returning true makes the players able to pick up the object. Only functional for server side props. If this is defined it must return true in order the PickupObject() function to work.
+
+
+
+InterceptChat
+void InterceptChat(sting message, CTerrorPlayer speaker): If you put a function with this name in your script, C++ will call it on all chat messages. Passing in the (annotated) chat string and the handle of the speaker.
+
+
+
+UserConsoleCommand
+void UserConsoleCommand(handle playerScript, arg): when a user does a <scripted_user_func argument> at console (or bound to a key) this function is called (if it exists). The playerscript is which players console it came from. You can pass strings or whatever, of course. So could do a switch statement off <arg> to give players special controls, etc.
+
+
+
+OnGameEvent_x
+void OnGameEvent_x(table params): A callback that is called when the game event x is fired. See scripts\gameevents.res and scripts\modeevents.res for valid events. The callback functions can be registered independently from Scripted Mode, using: __CollectEventCallbacks(this, "OnGameEvent_", "GameEventCallbacks", RegisterScriptGameEventListener) See L4D2_EMS/Appendix:_Game_Events(en) for more information.
+
+
+
+Global Functions
+Printing and Drawing
+Function	Signature	Description
+DebugDrawBox	void DebugDrawBox( vector origin, vector min, vector max, int r, int g, int b, int alpha, float duration)	Draw a debug overlay box.
+DebugDrawBoxDirection	void DebugDrawBoxDirection(Vector center, Vector min, Vector max, Vector forward, Vector rgb, float alpha, float duration)	Draw a debug forward box.
+DebugDrawCircle	void DebugDrawCircle(Vector center, Vector rgb, float alpha, float radius, bool ztest, float duration)	Draw a debug circle.
+DebugDrawClear	void DebugDrawClear()	Try to clear all the debug overlay info.
+DebugDrawLine	void DebugDrawLine(Vector start, Vector end, int red, int green, int blue', bool zTest, float time)	Draw a debug overlay line.
+DebugDrawLine_vCol	void DebugDrawLine_vCol(Vector start, vector end, vector rgb, bool ztest, float duration)	Draw a debug line using color vec.
+DebugDrawScreenTextLine	void DebugDrawScreenTextLine(float x, float y, int lineOffset, string text, int r, int g, int b, int a, float duration)	Draw text with a line offset.
+DebugDrawText	void DebugDrawText( vector origin, string text, bool useViewCheck, float duration)	Draw text on the screen, starting on the position of origin.
+__DumpScope	void __DumpScope(int indentation, handle scope)	Dumps contents of everything in the scope.
+DumpObject	void DumpObject(handle object)	Dumps information about a class or instance.
+HUDManageTimers	void HUDManageTimers(int timerID, int command, float value)	Manages the HUD timers. Valid command enumerations are: TIMER_DISABLE, TIMER_COUNTUP, TIMER_COUNTDOWN, TIMER_STOP, TIMER_SET
+HUDPlace	void HUDPlace(int slot, float x, float y, float width, float height)	Sets the position of a HUD element. See L4D2_EMS/Appendix:_HUD(en)
+HUDReadTimer	float HUDReadTimer(int timerID)	Returns the value of a HUD timer. See L4D2_EMS/Appendix:_HUD(en)
+HUDSetLayout	void HUDSetLayout(table HUDTable)	Applies a HUD to the screen. See L4D2_EMS/Appendix:_HUD(en)
+Msg	void Msg(string message)	Prints message to console without any line feed after.
+print	void print(string message)	Prints message to console without any line feed after.
+printl	void printl(string message)	Prints message to console with a line feed after.
+realPrint
+ShowMessage	void ShowMessage(string message)	Print a HUD message on all clients.
+错误:
+Non-functional.
+Say	void Say(CTerrorPlayer player, string message,bool teamOnly)	Calling this will have the specified player send the message to chat, either to teamOnly (true) or to everyone.
+SendToConsole	void SendToConsole(string command)	Send a string to the console as a command.
+SendToServerConsole	void SendToServerConsole(string command)	Send a string to the server console as a command.
+Ticker_AddToHud	void Ticker_AddToHud(table hudTable,string strInit,bool blink)	Adds ticker data to a passed in HUDTable.
+Ticker_NewStr	void Ticker_NewStr(string newStr,float newTimeout)	Sets the current Ticker string, w/an optional timeout value.
+Entity Manipulation
+Function	Signature	Description
+AddThinkToEnt	void AddThinkToEnt(handle entity, string FuncName)	This will put a think function onto an entity, or pass null to remove it. This is NOT chained, so be careful.
+ConnectOutputs	void ConnectOutputs(table)	sets output functions for entity by table [待完善]
+DoEntFire	void DoEntFire(string target, string action, string value, float delay, handle activator, handle caller)	Generate an entity I/O event. The caller argument takes a script handle, so it can be used with target set to !self to fire inputs to entities without usable targetnames.
+EntFire	void EntFire(string target, string action, string value = null, float delay = 0, handle activator = null)	Wrapper for DoEntFire() that sets activator and caller to null.
+DropFire	void DropFire(Vector location)	Drop a fire pool from the specified Vector location.
+DropSpit	void DropSpit(Vector location)	Drop a spit pool from the specified Vector location.
+EmitSoundOnClient	void EmitSoundOnClient(string soundScript, handle player)	Play named sound only on the client for the specified player.
+EmitSoundOn	void EmitSoundOn(string soundScript, handle entity)	Play named sound on an entity.
+StopSoundOn	void StopSoundOn(string soundScript, handle entity)	Stop named sound on an entity.
+EntIndexToHScript	CBaseEntity EntIndexToHScript(int entIndex)	Returns the script handle for the given entity index.
+GetFriction	float GetFriction(CTerrorPlayer player)	Returns the Friction on a player entity, meaningless if not a player.
+GetPhysVelocity	Vector GetPhysVelocity(handle entity)	Returns the velocity of the entity.
+GetPhysAngularVelocity	Vector GetPhysAngularVelocity(handle entity)	Returns the Angular velocity of the entity.
+GetPlayerFromCharacter	handle GetPlayerFromCharacter(int ?)	Given a character type, return the entity, or null.
+GetPlayerFromUserID	handle GetPlayerFromUserID(int ID)	Given a user id, return the entity, or null.
+IsPlayerABot	void IsPlayerABot(handle player)	Is this player/entity a bot.
+RotateOrientation	QAngle RotateOrientation(QAngle, QAngle)	Rotate a QAngle by another QAngle.
+RotatePosition	Vector RotatePosition(Vector origin, QAngle rotation, Vector input)	Rotate the input Vector around an origin.
+PickupObject	void PickupObject(handle player,handle entity)	Object from world is put into the "Held" slot of the player. Warning: it will smoothly interpolate from where it is to the players hand - which is a bit goofy if it is on other side of level.
+PlayerInstanceFromIndex	CTerrorPlayer PlayerInstanceFromIndex(int index)	Get a script handle of a player using the player index.
+PrecacheEntityFromTable	bool PrecacheEntityFromTable(table keyvalues)	Precache an entity from KeyValues(en) in a table.
+SpawnEntityFromTable	handle SpawnEntityFromTable(string name, handle keyvalues)	Native function for entity spawning. See L4D2_EMS/Appendix:_Spawning(en).
+SpawnEntityGroupFromTable	bool SpawnEntityGroupFromTable(handle entityGroup)	Native function for entity group spawning. See L4D2_EMS/Appendix:_Spawning(en).
+SpawnStartBox	handle SpawnStartBox(centerobjname, useFloating, width, depth, barriermodel, min_gap)	Auto-create a startbox that will give you a callback when the first player exits it.
+TeleportPlayersToStartPoints	void TeleportPlayersToStartPoints(string spawnpointName)	Teleport players to start entities named by the argument - must have 4 spawnpoints.
+Other
+Function	Signature	Description
+AddToScriptHelp
+Assert	void Assert(bool value, string optional message)	Test value and if not true, throws exception, optionally with message.
+CheckForSpecialStage	void CheckForSpecialStage(level, stage_list, stage_info)	Helper for picking a random special stage based on stage_info table.
+CheckOrSetMapCallback	void CheckOrSetMapCallback(cb_name, cb_default)	Pass a callback and default @ for it, if it doesnt exist in current table, place it there.
+ClearGameEventCallbacks	void ClearGameEventCallbacks()	Empties the tables of game event callback functions.
+ClearSavedTables	void ClearSavedTables()	Removes any tables saved with SaveTable().
+developer	bool developer()	If developer mode is on.
+Document
+DoIncludeScript	void DoIncludeScript(string file, handle scope)	Execute a script (internal)
+DoUniqueString	string DoUniqueString(string input)	Called by UniqueString, prob want to call that instead.
+FileToString	string FileToString(string file)	Reads a string from file. Returns the string from the file, null if no file or file is too big.
+FireGameEvent	string FireGameEvent(string event, table params)	Fire a game event to a listening callback function in script. Parameters are passed in a squirrel table.
+FireScriptEvent	void FireScriptEvent(event, params)	Wrapper for __RunEventCallbacks()
+GetCharacterDisplayName	string GetCharacterDisplayName(CTerrorPlayer player)	Return null if not a survivor, else the survivor characters name.
+GetCurrentFlowDistanceForPlayer	float GetCurrentFlowDistanceForPlayer(CTerrorPlayer player)	Returns the navigation flow distance from the start to the specified player.
+GetCurrentFlowPercentForPlayer	float GetCurrentFlowPercentForPlayer(CTerrorPlayer player)	Returns how far in the navigation flow from the start to the end the player is.
+GetFlowDistanceForPosition	float GetFlowDistanceForPosition(Vector position)	Returns the navigation flow distance from the start to the specified point.
+GetFlowPercentForPosition	float GetCurrentFlowPercentForPosition(Vector position, bool unknown)	Returns how far in the navigation flow from the start to the end the position is.
+GetMaxFlowDistance	float GetMaxFlowDistance()	Returns the navigation flow distance from the start to the end of the level.
+GetAverageSurvivorFlowDistance	float GetAverageSurvivorFlowDistance()	Returns the navigation flow distance from the start to the survivors position averaged.
+GetFrameCount	void GetFrameCount()	Returns the engine's current frame count.
+GetFunctionSignature
+GetInfectedStats	void GetInfectedStats(table statTable)	Fills statTable with some infected counts/etc... Right now the list is Witches, Tanks, Specials, Commons, though we may add more as requested going forward.
+IncludeScript	void IncludeScript(string file, handle scope = null)	Wrapper for DoIncludeScript
+IsWeakref
+MakeNamespace
+RandomFloat	float RandomFloat()	Generate a random floating point number.
+RandomFloat	float RandomFloat(float min, float max)	Generate a random floating point number within a range, inclusive.
+RandomInt	int RandomInt()	Generate a random integer.
+RandomInt	int RandomInt(int min, int max)	Generate a random integer within a range, inclusive.
+ReapplyInfectedFlags	ReapplyInfectedFlags(int flags, handle infected)	Apply Infected Flags from DirectorOptions. Applies to all common (spawned and unspawned) unless a handle to a specific infected is specified.
+RegisterFunctionDocumentation
+RegisterScriptGameEventListener	void RegisterScriptGameEventListener(string eventName)	Register as a listener for a game event from script. It's what __CollectGameEventCallbacks() uses to register event callbacks to the C++ code.
+ReloadMOTD	void ReloadMOTD()	Reloads the MotD file.
+RestoreTable	void RestoreTable(string identifier, table)	See L4D2_EMS/Appendix:_Table_Save_Restore(en).
+RetrieveNativeSignature
+rr_AddDecisionRule	bool rr_AddDecisionRule(RRule rule)	Add a rule to the decision database. Takes a RRule object from rulescript_base.nut.
+rr_CommitAIResponse	bool rr_CommitAIResponse(handle entity, table airesponse)	Supposed to commit the result of QueryBestResponse back to the given entity to play. Takes a table needing the keys response with a ResponseSingle object (defined in response_testbed.nut) and orig_query with an unknown content.
+rr_GetResponseTargets	table rr_GetResponseTargets()	Retrieve a table of all available expresser targets, in the form { name : handle, name: handle }.
+rr_QueryBestResponse	unknown rr_QueryBestResponse(handle entity, table query)	Tests query against entity's response system and returns the best response found (or null if none found). Returns a pointer with a null type, that is apparently not usable anywhere. Possibly supposed to return a AI_Response object.
+SaveTable	void SaveTable(string identifier, table)	See L4D2_EMS/Appendix:_Table_Save_Restore(en).
+StageInfo_Execute	void StageInfo_Execute(stageInfo, stageDefaults)	Execute a stage table, i.e. move parameters to DirectorOptions, do callbacks and so on.
+StartAssault	void StartAssault()	Tells all existing nextbots to swap into assault mode and not hide/dither/loiter.
+StringToFile	void StringToFile(string file, string string)	Stores the string into the file.
+Time	float Time()	Get the current server time.
+TimeToDisplayString	string TimeToDisplayString(disp_time)	Convert a # of seconds to a displayable time string form m:ss
+UniqueString	string UniqueString(string input)	Generate a string guaranteed to be unique across the life of the script VM, with an optional root string. Useful for adding data to tables when not sure what keys are already in use in that table.
+VSquirrel_OnCreateScope
+VSquirrel_OnReleaseScope
+__CollectEventCallbacks	void __CollectEventCallbacks(scope)	Registers callbacks for OnGameEvent_x functions.
+__CollectEventCallbacks	void __CollectEventCallbacks( scope, prefix, globalTableName, regFunc )	Overloaded function, used by the above one like this: __CollectEventCallbacks( scope, "OnGameEvent_", "GameEventCallbacks",
+RegisterScriptGameEventListener )
+__ExecutePreSpawn
+__FinishSpawn
+__ReplaceClosures	void __ReplaceClosures(script, scope)
+__RunEventCallbacks	void __RunEventCallbacks(event, params, prefix, globalTableName, bWarnIfMissing)	Call all functions in the callback array for the given game event.
+__RunGameEventCallbacks	void __RunGameEventCallbacks(event, params	Wrapper for __RunEventCallbacks()
+Functions with detailed documentation
+CommandABot
+bool CommandABot(table commandTable): Issues commands to bots based on a table configuration.
+
+Inputs:
+.cmd - required field, must specify one of these commands: BOT_CMD_ATTACK, BOT_CMD_MOVE, BOT_CMD_RETREAT, BOT_CMD_RESET
+NOTE: in order to use the BOT_CMD enums you must be operating in the mode script scope. If you aren't you can pass an integer instead of the enum (e.g., set cmd to 1 instead of BOT_CMD_MOVE)
+.pos - a position, used only in BOT_CMD_MOVE
+.bot - which bot you are commanding (or NULL for all bots)
+.target - for attack and retreat - what entity is the target of the attack or retreat.
+
+Here is an example of how to create a table that commands all bots to run to position 0,0,0:
+
+commands <-
+{
+	cmd = 1 // BOT_CMD_MOVE
+	pos = Vector( 0,0,0 )
+}
+----
+CommandABot( commands )
+
+// Alternatively, you could send the data inline, like so:
+
+ CommandABot( { cmd = 1, pos = Vector( 0,0,0 ) } )
+
+
+GetInvTable
+void GetInvTable(handle player,table invTable) : Fills invTable with the player's inventory.
+
+The table is structured like this. Only the slots with items currently in them are added.
+
+{
+	slot0 = handle	// Primary
+	slot1 = handle	// Secondary
+	slot2 = handle	// Throwable
+	slot3 = handle	// Medkit/Defib
+	slot4 = handle	// Pills/Adrenaline
+	slot5 = handle	// Carried physics object (L4D style)
+	Held  = handle  // Carried physics object (legacy style, from CanPickupObject() or PickupObject() )
+}
+TraceLine
+bool TraceLine(table traceTable): uses a configuration table to do a raytrace, puts return information into the table for return usage. Returns a bool indicating that the tracetable was successful.
+
+Inputs:
+
+   key: start       value: start vector for the tracetable
+   key: end         value: end vector for the tracetable
+   key: ignore      value: script handle to ignore as part of the tracetable
+   key: mask        value: optional masks: TRACE_MASK_VISIBLE_AND_NPCS (default), TRACE_MASK_ALL, TRACE_MASK_VISION, TRACE_MASK_SHOT, TRACE_MASK_PLAYER_SOLID, TRACE_MASK_NPC_SOLID
+Outputs:
+
+   key: hit          value: did we hit something
+   key: pos          value: where the traceline ended
+   key: fraction     value: where the hit occurred
+   key: enthit       value: handle for entity hit if there is one
+   key: startsolid   value: did we start in solid
+The only required information to make the tracetable is providing the start and end point.
+
+Example:
+
+traceTable <-
+{
+	start = Vector( 0,0,0 )
+	end =  Vector( 0,0,256 )
+}
+
+
+ZSpawn
+bool ZSpawn(table spawnTable): This is essentially the z_spawn console command, except (a) you pass a table and (b) no raycast, you give it the position vector. The table entries used are:
+
+   key: type       value: ZOMBIE_WITCH, etc - or the special ZSPAWN_MOB, or WITCHBRIDE, etc
+   key: pos        value: Vector position at which to spawn, optional (defaults to automatically spawn somewhere in the world)
+   key: ang        value: QAngle for spawn, optional (defaults to 0,0,0)
+Debugging functions
+Functions for interacting with the debugger. Some of them are documented here(en).
+
+BeginScriptDebug
+EndScriptDebug
+ScriptDebugAddTextFilter
+ScriptDebugAddTrace
+ScriptDebugAddWatch
+ScriptDebugAddWatches
+ScriptDebugAddWatchPattern
+ScriptDebugClearTraces
+ScriptDebugClearWatches
+ScriptDebugDraw
+ScriptDebugDrawWatches
+ScriptDebugDumpKeys
+ScriptDebugHook
+ScriptDebugIterateKeys
+ScriptDebugIterateKeysRecursive
+ScriptDebugRemoveTextFilter
+ScriptDebugRemoveTrace
+ScriptDebugRemoveWatch
+ScriptDebugRemoveWatches
+ScriptDebugRemoveWatchPattern
+ScriptDebugTextDraw
+ScriptDebugTextPrint
+ScriptDebugTextTrace
+ScriptDebugTraceAll
+__VScriptServerDebugHook
+Standard Squirrel library
+Standard Squirrel library functions (consult official Squirrel language league for more details):
+
+Function
+abs
+acos
+array
+asin
+assert
+atan
+atan2
+ceil
+collectgarbage
+compilestring
+cos
+exp
+fabs
+floor
+format
+getconsttable
+getroottable
+getstackinfos
+log
+log10
+lstrip
+pow
+print
+rand
+rstrip
+setconsttable
+seterrorhandler
+setroottable
+type
+sin
+split
+sqrt
+srand
+strip
+suspend
+tan
