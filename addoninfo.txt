@@ -1,0 +1,8 @@
+"AddonInfo"
+{
+    "name"          "cheated-ai"
+    "version"       "0.1"
+    "author"        "ustinian"
+    "description"   "Makes survivor bots act like cheated."
+    "addon_version" "1"
+}
