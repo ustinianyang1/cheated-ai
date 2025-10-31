@@ -54,7 +54,7 @@ function ai_shoot() {
 				}
 			}
 			if (closestTarget) {
-				//锁头+开火
+				//锁头+蹲下+开火
 
 			}
 		}
