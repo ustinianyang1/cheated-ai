@@ -1,8 +1,9 @@
 "AddonInfo"
 {
-    "name"          "cheated-ai"
-    "version"       "0.1"
-    "author"        "ustinian"
-    "description"   "Makes survivor bots act like cheated."
-    "addon_version" "1"
+  addonSteamAppID   	550
+  addontitle		"cheated-ai"
+  addonversion	    	"0.1.0"
+  addonauthor 	   	"ustinian"
+  addonDescription  	"Improvements for the L4D2 survivor bots"
+  addonContent_Script 	1
 }
