@@ -1,7 +1,7 @@
 sb_debug_apoproach_wait_time 0.5
 allow_all_bot_survivor_team 1
 sb_all_bot_game 1
-sb_allow_shoot_through_survivors 0
+sb_allow_shoot_through_survivors 1
 sb_battlestation_give_up_range_from_human 100
 sb_battlestation_human_hold_time 0.25
 sb_close_checkpoint_door_interval 0.5

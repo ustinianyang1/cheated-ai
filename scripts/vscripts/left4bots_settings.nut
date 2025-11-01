@@ -1,5 +1,4 @@
-::Left4Bots.Settings <-
-{
+::Left4Bots.Settings <- {
 	// [1/0] 1 = Prevents (at least will try) the infamous bug of the pipe bomb thrown right before transitioning to the next chapter, the bots will bug out and do nothing for the entire next chapter
 	anti_pipebomb_bug = 1
 
@@ -65,7 +64,7 @@
 
 	// [1/0] Enable/Disable bots being able to set the barricade gascans on fire (NOTE: if this is 0, 'destroy' and 'use' orders on the barricade gascans will not work)
 	damage_barricade = 1
-	
+
 	// [1/0] Enable/Disable bots being able to ignite gascans and other items
 	damage_other = 0
 
@@ -126,7 +125,7 @@
 	// 15 = pistol + magnum + melee + chainsaw
 	// 0 = OFF (Vanilla AI logic)
 	enforce_shotgun = 15
-	
+
 	// Don't switch to the secondary weapon if the primary is a sniper rifle and the secondary is
 	// 1 = pistol, 2 = magnum, 4 = melee, 8 = chainsaw
 	// 15 = pistol + magnum + melee + chainsaw
@@ -138,16 +137,16 @@
 	fall_velocity_warp = 0
 
 	// Name of the file with the convar changes to load (empty = don't load the convar changes)
-	file_convars = "left4bots2/cfg/convars.txt"
+	file_convars = "cfg/convars.txt"
 
 	// Name of the file containing the items that the vanilla AI should/should not pickup (empty = don't load the items)
-	file_itemstoavoid = "left4bots2/cfg/itemstoavoid.txt"
+	file_itemstoavoid = "cfg/itemstoavoid.txt"
 
 	// Name of the file with the vocalizer/command mapping (empty = don't load the mapping)
-	file_vocalizer = "left4bots2/cfg/vocalizer.txt"
+	file_vocalizer = "cfg/vocalizer.txt"
 
 	// Prefix of the name of the files with the weapon preferences (file name will be "file_weapons_prefix" + "bot name lowercase" + ".txt")
-	file_weapons_prefix = "left4bots2/cfg/weapons/"
+	file_weapons_prefix = "cfg/weapons/"
 
 	// When executing a 'follow' order, the bot will start pause when within move_end_radius_follow from the followed entity,
 	// but will only resume when farther than follow_pause_radius, so this has to be > than move_end_radius_follow
@@ -164,7 +163,7 @@
 
 	// [1/0] Should the bots give their upgrade packs to human players?
 	give_bots_upgrades = 1
-	
+
 	// [1/0] Should the bots give their weapons to human players?
 	give_bots_weapons = 1
 
@@ -219,7 +218,7 @@
 
 	// The nav areas whithin this radius from the incapped survivor and a tank nearby will be blocked if incap_block_nav_interval > 0
 	incap_block_nav_radius = 100
-	
+
 	// An aggroed tank must be within this radius from the incapped survivor in order to block the nav areas around the survivor
 	incap_block_nav_tank_range = 700
 
@@ -272,14 +271,14 @@
 	loglevel = 3
 
 	// [1/0] Enable/Disable the vscripted manual attack while not executing any MOVE command. 0 = Manual attack only while executing MOVE commands, 1 = Always
-	manual_attack_always = 0
+	manual_attack_always = 1
 
 	// max distance of the bot will shoot enemies head, recommended short than "manual_attack_radius", so bots won't waste much ammo when shooting at far target.
 	// 0 = always shoot body
-	manual_attack_common_head_radius = 180
+	manual_attack_common_head_radius = 950
 
 	// 0 = like a machine gun, 1 = reduce dual pistol firing speed to 0.2s, like vanilla bot did.
-	manual_attack_dual_pistol_nerf = 1
+	manual_attack_dual_pistol_nerf = 0
 
 	// [0.0 - 1.0] While executing MOVE commands (or always if manual_attack_always = 1), this is how straight the bot should be looking at the enemy in order to shoot it
 	// 0.0 (or -1) = Even the enemies behind will be shoot (CSGO spinbot style)
@@ -290,21 +289,21 @@
 
 	// While executing MOVE commands (or always if manual_attack_always = 1), this is the max distance of the enemies that the bot will shoot
 	manual_attack_radius = 950
-	
+
 	// Smooth camera rotation, turn a part of angles at a time instead of looking at the target immediately, only apply to shoot command.
 	// Depending on the set value, can easily adjust the bot's aiming speed, observer the bots at first person to check the difference.
 	// Valve use these Cvars 'sb_normal_saccade_speed = 350', 'sb_combat_saccade_speed = 1000' to contronl the default AI.
 	// 500 means bots needs at least 0.36(180/500) seconds to turn 180 degrees.
 	// Advanced 1000, Expert 2000.
 	// set 0 to disable.
-	manual_attack_saccade_speed = 500
+	manual_attack_saccade_speed = 2000
 
 	// max distance of the bot will shoot enemies head, recommended short than "manual_attack_radius", so bots won't waste much ammo when shooting at far target.
 	// 0 = always shoot body
-	manual_attack_special_head_radius = 120
+	manual_attack_special_head_radius = 450
 
 	// 0 = only kill angry common incected, 1 = also wandering infected.
-	manual_attack_wandering = 0
+	manual_attack_wandering = 1
 
 	// Maximum distance from a generic destination position for setting the travel done
 	move_end_radius = 30
@@ -344,7 +343,7 @@
 
 	// >0 = BotMoveTo area and move pos are drawn on screen for this amount of time (only the host can see it). 0 = Disable
 	moveto_debug_duration = 0
-	
+
 	// [1/0] Enable/Disable using the nearest nav area to the destination item as the MOVE destination instead of the item itself. Solves some issues on some maps (like ) but
 	moveto_nav = 1
 
@@ -452,7 +451,7 @@
 	shove_commons_radius = 35
 
 	// Chance that the bots will try to deadstop a hunter/jockey attack when the attack is directed at them
-	shove_deadstop_chance = 95
+	shove_deadstop_chance = 100
 
 	// Delta pitch (from his feet) for aiming when deadstopping special infected
 	shove_deadstop_deltapitch = -9.5
@@ -613,7 +612,7 @@
 
 	// TraceLine mask used to look for pick-up items
 	tracemask_pickups = 134242379 // 0x1 | 0x2 | 0x8 | 0x40 | 0x2000 | 0x4000 | 0x8000000 (CONTENTS_SOLID | CONTENTS_WINDOW | CONTENTS_GRATE | CONTENTS_BLOCKLOS | CONTENTS_IGNORE_NODRAW_OPAQUE | CONTENTS_MOVEABLE | CONTENTS_DETAIL)
-	
+
 	// TraceLine mask used for other traces
 	tracemask_others = 1174421507 // TRACE_MASK_DEFAULT from left4lib_consts.nut
 
